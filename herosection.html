@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Looking for the best cycle shop near you? Deccan Cycle Mart offers trusted bicycle sales, accessories, expert repair, and free home pickup in Bollaram–Secunderabad. Rated top by 1500+ families!">
+    <meta name="keywords" content="cycle shop near me, bicycle sales, cycle repair, Deccan Cycle Mart, bike shop, Secunderabad, Bollaram, cycle service">
+    <meta name="author" content="Deccan Cycle Mart">
+    <title>Deccan Cycle Mart - Premium Cycle Sales & Service in Bollaram</title>
+    <link rel="icon" type="image/png" href="DECCAN.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-blue': '#287cb2',
+                        'deep-blue': '#064771',
+                        'accent-yellow': '#fded0d',
+                        'light-bg': '#f8f9fa',
+                        'text-dark': '#1e293b',
+                        'text-light': '#64748b',
+                        'whatsapp-green': '#25D366',
+                        'whatsapp-green-hover': '#1ebc59',
+                    },
+                    fontFamily: { 
+                        sans: ['Inter', 'sans-serif'] 
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --accent-yellow: #fded0d;
+        }
+
+        html { scroll-behavior: smooth; }
+        body { background-color: #f8f9fa; }
+        
+        @keyframes animated-gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .gradient-text-animated {
+            background: linear-gradient(90deg, #fded0d, #287cb2, #064771, #fded0d);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: animated-gradient 4s ease infinite;
+        }
+
+        @media (max-width: 767px) {
+            .gradient-text-animated {
+                animation: animated-gradient 8s ease infinite;
+            }
+        }
+
+        .gradient-button {
+            background-image: linear-gradient(to right, #fded0d 0%, #ffd900 50%, #fded0d 100%);
+            background-size: 200% auto;
+            transition: 0.5s;
+        }
+        .gradient-button:hover { background-position: right center; }
+        
+        .brand-name-gradient {
+            background: linear-gradient(90deg, #064771, #287cb2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+        }
+
+        .hero-bg {
+            background-color: #f0f4f8; 
+            background-image: radial-gradient(circle at 90% 10%, rgba(40, 124, 178, 0.4), transparent 40%),
+                              radial-gradient(circle at 10% 90%, rgba(253, 237, 13, 0.3), transparent 40%),
+                              radial-gradient(circle at 50% 50%, rgba(6, 71, 113, 0.2), transparent 70%);
+        }
+
+        .cta-shine {
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-shine::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(
+                to right, 
+                rgba(255, 255, 255, 0) 0%, 
+                rgba(255, 255, 255, 0.5) 50%, 
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: skewX(-25deg);
+            animation: shine-effect 6s infinite;
+            animation-delay: 2s;
+        }
+        @keyframes shine-effect {
+            0% {
+                left: -100%;
+            }
+            40% {
+                left: 150%;
+            }
+            100% {
+                left: 150%;
+            }
+        }
+
+        #assembly-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            min-height: 400px;
+        }
+        
+        .bike-part-img {
+            position: absolute;
+            will-change: transform, opacity;
+            transition: opacity 0.8s ease-out, transform 1.5s cubic-bezier(0.23, 1, 0.32, 1);
+            opacity: 0;
+        }
+        
+        #part-frame { top: 50.5%; left: 50%; width: 90%; transform: translate(-50%, -50%); }
+        #part-wheel-front { top: 60.5%; left: 78.5%; width: 48%; transform: translate(-50%, -50%); }
+        #part-wheel-rear { top: 61%; left: 21.5%; width: 49%; transform: translate(-50%, -50%); }
+        #part-handle { top: 21%; left: 70.5%; width: 40%; transform: translate(-50%, -50%); }
+        #part-seat { top: 23%; left: 31.5%; width: 24%; transform: translate(-50%, -50%); }
+        #part-gears { top: 61.5%; left: 40.5%; width: 32%; transform: translate(-50%, -50%); }
+        
+        #final-bike-image {
+            position: absolute;
+            top: 50%; left: 50%; width: 90%;
+            transform: translate(-50%, -50%) scale(0.95);
+            opacity: 0;
+            will-change: transform, opacity;
+            transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1), transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        #final-bike-image.visible {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+
+        #magic-flash {
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 50px; height: 50px;
+            background-color: transparent;
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 0;
+        }
+        #magic-flash.animate {
+            animation: shockwave 1.2s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+        }
+
+        @keyframes shockwave {
+            0% {
+                transform: translate(-50%, -50%) scale(0.5);
+                opacity: 1;
+                box-shadow: 0 0 5px 5px rgba(253, 237, 13, 0.9), 
+                            0 0 10px 10px rgba(253, 237, 13, 0.6), 
+                            0 0 15px 20px rgba(40, 124, 178, 0.3);
+            }
+            80% { opacity: 0.5; }
+            100% {
+                transform: translate(-50%, -50%) scale(3);
+                opacity: 0;
+                box-shadow: 0 0 50px 100px rgba(253, 237, 13, 0), 
+                            0 0 60px 120px rgba(253, 237, 13, 0), 
+                            0 0 70px 150px rgba(40, 124, 178, 0);
+            }
+        }
+
+        header {
+            transition: background-color 0.4s ease, backdrop-filter 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+        header.scrolled {
+            position: fixed;
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom-width: 1px;
+            border-color: #e5e7eb;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        
+        .nav-link {
+            position: relative;
+            padding-bottom: 6px;
+            font-medium;
+            color: #1e293b; 
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover { color: #287cb2; }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #287cb2; 
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease-out;
+        }
+        .nav-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+        .nav-link.active {
+            color: #287cb2; 
+            font-weight: 600; 
+        }
+        .nav-link.active::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        #mobile-menu a.active {
+            color: #287cb2; 
+            font-weight: 700; 
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .bike-part-img, #magic-flash, #final-bike-image { 
+                animation: none !important;
+                transition: none !important; 
+            }
+        }
+    </style>
+</head>
+<body class="text-text-dark font-sans antialiased">
+    <div id="root" class="flex flex-col min-h-screen">
+
+        <main class="flex-grow">
+            <section id="home" class="relative hero-bg overflow-hidden min-h-screen flex flex-col">
+                <header class="absolute top-0 left-0 right-0 z-40">
+                    <div class="max-w-screen-xl mx-auto px-6">
+                        <div class="flex items-center justify-between h-20">
+                            <a href="index.html" class="flex items-center gap-2">
+                                <img src="blue deccan logo.png" alt="Deccan Cycle Mart Logo" class="h-12 w-auto" onerror="this.onerror=null;this.src='https://placehold.co/100x50/ffffff/0a1a2f?text=Logo';">
+                                <span class="text-2xl hidden sm:block brand-name-gradient">Deccan Cycle Mart</span>
+                            </a>
+                            <nav class="hidden md:flex items-center space-x-8">
+                                <a href="#home" class="nav-link active">Home</a>
+                                <a href="#about" class="nav-link">About Us</a>
+                                <a href="#features" class="nav-link">Service</a>
+                                <a href="#media" class="nav-link">Media</a>
+                                <a href="#contact" class="nav-link">Contact</a>
+                            </nav>
+                            <div class="hidden md:flex">
+                                <button type="button" class="open-modal-button gradient-button text-deep-blue font-bold text-base px-6 py-3 rounded-full shadow-lg transition-transform transform hover:scale-105">Book Service</button>
+                            </div>
+                            <div class="md:hidden">
+                                <button id="mobile-menu-button" class="text-text-dark focus:outline-none">
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="mobile-menu" class="hidden md:hidden px-6 pt-2 pb-4 bg-white/95">
+                        <a href="#home" class="block py-2 text-lg">Home</a>
+                        <a href="#about" class="block py-2 text-lg">About Us</a>
+                        <a href="#features" class="block py-2 text-lg">Service</a>
+                        <a href="#media" class="block py-2 text-lg">Media</a>
+                        <a href="#contact" class="block py-2 text-lg">Contact</a>
+                        <a href="#booking" class="block mt-2 py-3 text-lg gradient-button text-deep-blue text-center rounded-full font-semibold">Book Service</a>
+                    </div>
+                </header>
+
+                <div class="flex-grow flex items-center">
+                    <div class="max-w-screen-xl mx-auto px-6 flex flex-col-reverse md:flex-row gap-8 items-center w-full">
+                        <div class="text-center md:text-left z-10">
+                            <h1 class="text-5xl lg:text-7xl font-black leading-tight mb-6">
+                               Every <span class="gradient-text-animated">Joyful Ride</span> Begins Here.
+                            </h1>
+                            <p class="text-lg md:text-xl text-text-light max-w-xl mx-auto md:mx-0 mb-10">
+                                Bollaram’s Most Trusted Cycle Shop – Sales, Service, Accessories, Rentals & Exchange
+                            </p>
+                            <div class="flex flex-col items-center md:items-start">
+                                <div class="relative inline-block">
+                                    <button type="button" id="cta-button" class="open-modal-button gradient-button text-deep-blue font-bold text-lg px-10 py-4 rounded-full shadow-lg transition-transform transform hover:scale-105 relative z-10 cta-shine">
+                                        Book Free Home Service
+                                    </button>
+                                </div>
+                                <div class="mt-4 flex items-center text-text-light">
+                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                    <span>Free pickup & drop — 5 km (Bollaram)</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="assembly-container" aria-hidden="true">
+                            <img src="Bicycle_Frame.png" id="part-frame" class="bike-part-img" alt="Bicycle Frame">
+                            <img src="bicycle_wheel_front_ani.png" id="part-wheel-front" class="bike-part-img" alt="Bicycle Front Wheel">
+                            <img src="bicycle_back_wheel_ani.png" id="part-wheel-rear" class="bike-part-img" alt="Bicycle Rear Wheel">
+                            <img src="bicyle_handle_ani.png" id="part-handle" class="bike-part-img" alt="Bicycle Handlebars">
+                            <img src="bicycle_seat_ani.png" id="part-seat" class="bike-part-img" alt="Bicycle Seat">
+                            <img src="bicycle_gear_and_pedal_ani.png" id="part-gears" class="bike-part-img" alt="Bicycle Gears and Pedals">
+                            <div id="magic-flash"></div>
+                            <img src="Fully_Assembled_Bicycle.png" id="final-bike-image" alt="Fully Assembled Bicycle">
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Other sections remain unchanged -->
+
+        </main>
+        
+        <!-- Footer and modals remain unchanged -->
+    </div>
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // ... (header and nav scroll logic)
+
+        // --- [RESTORED] Full Bicycle Assembly Animation Logic ---
+        const assemblyContainer = document.getElementById('assembly-container');
+        if (assemblyContainer) {
+            const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            let hasAnimated = false;
+
+            const magicFlash = document.getElementById('magic-flash');
+            const finalBikeImage = document.getElementById('final-bike-image');
+            
+            const FROM_POSITIONS = {
+                'part-frame':       'translateX(-120%) translateY(10%) rotate(-25deg) scale(0.7)',
+                'part-wheel-front': 'translateX(120%) translateY(-10%) rotate(90deg) scale(0.7)',
+                'part-wheel-rear':  'translateX(120%) translateY(50%) rotate(-90deg) scale(0.7)',
+                'part-handle':      'translateY(-250%) scale(0.7)',
+                'part-seat':        'translateY(-300%) scale(0.7)',
+                'part-gears':       'translateY(250%) scale(0.7)',
+            };
+            
+            const parts = Object.keys(FROM_POSITIONS).map(id => document.getElementById(id));
+
+            const initializePartPositions = () => {
+                parts.forEach(part => {
+                    if (!part) return;
+                    part.style.transition = 'none';
+                    part.style.opacity = '0';
+                    part.style.transform = FROM_POSITIONS[part.id];
+                });
+                if(finalBikeImage) finalBikeImage.classList.remove('visible');
+                if(magicFlash) magicFlash.classList.remove('animate');
+            };
+
+            const startAssembly = () => {
+                if (hasAnimated) return;
+                hasAnimated = true;
+
+                if (isReducedMotion) {
+                    if(finalBikeImage) finalBikeImage.classList.add('visible');
+                    return;
+                }
+                
+                parts.forEach((part, index) => {
+                    if (!part) return;
+                    setTimeout(() => {
+                        part.style.transition = 'opacity 0.8s ease-out, transform 1.5s cubic-bezier(0.23, 1, 0.32, 1)';
+                        part.style.opacity = '1';
+                        part.style.transform = 'translate(-50%, -50%)';
+                    }, index * 150);
+                });
+                
+                setTimeout(() => {
+                    if(magicFlash) magicFlash.classList.add('animate');
+                }, 1800); 
+
+                setTimeout(() => {
+                    parts.forEach(p => {
+                        if (p) {
+                           p.style.transition = 'opacity 0.3s ease-out';
+                           p.style.opacity = '0';
+                        }
+                    });
+                }, 1900);
+
+                setTimeout(() => {
+                    if (finalBikeImage) {
+                       finalBikeImage.classList.add('visible');
+                    }
+                }, 2100);
+            };
+            
+            initializePartPositions(); 
+
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries) => {
+                    if (entries[0].isIntersecting) {
+                        startAssembly();
+                        observer.unobserve(assemblyContainer);
+                    }
+                }, { threshold: 0.3 });
+                observer.observe(assemblyContainer);
+            } else {
+                startAssembly();
+            }
+        }
+        
+        // ... (rest of the original JS for modals, etc.)
+    });
+    </script>
+</body>
+</html>
+

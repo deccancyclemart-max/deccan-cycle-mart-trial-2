@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Updated Sections Preview</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-blue': '#287cb2',
+                        'deep-blue': '#064771',
+                        'accent-yellow': '#fded0d',
+                        'text-neutral-grey': '#6c757d',
+                    },
+                    fontFamily: { 
+                        sans: ['Inter', 'sans-serif'],
+                        montserrat: ['Montserrat', 'sans-serif'] 
+                    },
+                    borderRadius: {
+                        '2xl': '1rem',
+                        'xl': '0.75rem',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        body {
+            background-color: #FFFFFF;
+            position: relative;
+            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        /* --- Premium Button Styles --- */
+        .premium-button {
+            font-weight: 700;
+            transition: transform 0.2s ease, box-shadow 0.3s ease;
+            color: #064771; 
+            background-color: #fded0d;
+        }
+        .premium-button:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 25px 5px rgba(253, 237, 13, 0.7); /* Yellow glow */
+        }
+
+        /* --- Outlined Button Style --- */
+        .premium-button-outlined {
+            font-weight: 700;
+            transition: all 0.3s ease;
+            color: #287cb2; /* primary-blue text */
+            background-color: #FFFFFF; /* white background */
+            border: 2px solid #287cb2; /* primary-blue border */
+        }
+        .premium-button-outlined:hover {
+            transform: scale(1.03);
+            background-color: #287cb2; /* primary-blue background on hover */
+            color: #FFFFFF; /* white text on hover */
+            box-shadow: 0 0 20px 3px rgba(40, 124, 178, 0.4); /* Blue glow */
+        }
+
+        /* --- Testimonial Carousel Styles --- */
+        #testimonial-carousel-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            height: 350px;
+            perspective: 1000px;
+        }
+        .testimonial-slide {
+            position: absolute;
+            width: 80%;
+            max-width: 500px;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+        }
+        .testimonial-bubble {
+            padding: 2rem;
+            border-radius: 1.5rem;
+            position: relative;
+            color: #6c757d;
+            background-color: #f3f4f6;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+        .testimonial-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-top: 15px solid #f3f4f6;
+            transition: border-top-color 0.5s ease;
+        }
+        .testimonial-slide.active .testimonial-bubble {
+            background-color: #287cb2;
+            color: white;
+        }
+        .testimonial-slide.active .testimonial-bubble::after {
+            border-top-color: #287cb2;
+        }
+        .testimonial-author-container {
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            height: 100px; /* fixed height */
+        }
+        .testimonial-author {
+            text-align: center;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+            transform: scale(0.8);
+            opacity: 0.5;
+            width: 120px; /* Fixed width for alignment */
+        }
+        .testimonial-author.active {
+            transform: scale(1);
+            opacity: 1;
+        }
+        .testimonial-avatar {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            border: 4px solid transparent;
+            transition: border-color 0.5s ease;
+            margin: 0 auto;
+        }
+        .testimonial-author.active .testimonial-avatar {
+            border-color: #287cb2;
+        }
+
+        /* --- [REFINED] Contact CTA Banner --- */
+        .contact-glow-container {
+            position: relative;
+            text-align: center;
+        }
+
+        .glow-element {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 700px; /* Increased size for a wider, softer glow */
+            height: 700px; 
+            transform: translate(-50%, -50%);
+            /* [ADJUSTED] Made colors even darker for more visibility */
+            background-image: 
+                radial-gradient(circle at 30% 40%, rgba(40, 124, 178, 0.65), transparent 50%), /* primary-blue: #287cb2 */
+                radial-gradient(circle at 70% 60%, rgba(253, 237, 13, 0.45), transparent 50%),  /* accent-yellow: #fded0d */
+                radial-gradient(circle at 50% 50%, rgba(6, 71, 113, 0.6), transparent 60%);   /* deep-blue: #064771 */
+            border-radius: 50%;
+            filter: blur(150px); /* Slightly reduced blur for more presence */
+            z-index: 1; /* Places glow behind content */
+            animation: subtle-breathing 12s ease-in-out infinite alternate;
+        }
+
+        .contact-content {
+            position: relative;
+            z-index: 2; /* Places content above glow */
+        }
+
+        @keyframes subtle-breathing {
+            from {
+                transform: translate(-50%, -50%) scale(0.95);
+                opacity: 0.8; /* Increased starting opacity */
+            }
+            to {
+                transform: translate(-50%, -50%) scale(1.05);
+                opacity: 1;
+            }
+        }
+
+        /* --- [NEW] Mobile Responsive Adjustments --- */
+        @media (max-width: 768px) {
+            /* Make testimonial container less tall on mobile */
+            #testimonial-carousel-container {
+                height: 320px;
+            }
+            .testimonial-bubble {
+                padding: 1.5rem;
+            }
+            /* Hide non-active authors on mobile to prevent crowding */
+            .testimonial-author:not(.active) {
+                display: none;
+            }
+            /* Adjust the author container gap for the single visible item */
+            .testimonial-author-container {
+                gap: 0;
+            }
+            /* Scale down the glow effect for smaller screens */
+            .glow-element {
+                width: 450px;
+                height: 450px;
+            }
+        }
+    </style>
+</head>
+<body class="font-sans antialiased">
+
+    <section id="testimonials" class="py-10 md:py-20">
+         <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-deep-blue">What Our <span class="text-primary-blue">Customers</span> Say About Us</h2>
+            </div>
+            
+            <div id="testimonial-carousel-container">
+                <!-- Testimonials will be injected here by JavaScript -->
+            </div>
+
+            <div id="testimonial-authors-container" class="testimonial-author-container">
+                <!-- Avatars and names will be injected here -->
+            </div>
+
+            <div class="flex justify-center items-center mt-8 space-x-4">
+                <button id="prev-testimonial" class="p-2 rounded-full hover:bg-gray-100 transition-colors">
+                    <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                </button>
+                <button id="next-testimonial" class="p-2 rounded-full hover:bg-gray-100 transition-colors">
+                   <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </button>
+            </div>
+
+            <div class="text-center mt-16">
+                <a href="media.html" class="inline-block premium-button-outlined py-3 px-8 rounded-xl text-lg">See Our Media</a>
+            </div>
+        </div>
+    </section>
+    
+     <!-- [REBUILT] Contact Section -->
+     <section class="py-16 md:py-20">
+       <div class="max-w-4xl mx-auto px-6">
+          <!-- This new container will hold and center the glow effect -->
+          <div class="contact-glow-container">
+               <!-- This div is the dedicated glow effect -->
+               <div class="glow-element"></div>
+               <!-- This div holds the content, ensuring it's on top -->
+               <div class="contact-content">
+                   <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-deep-blue mb-4">For any other query, feel free to contact us.</h2>
+                   <a href="contact.html" class="inline-block mt-6 premium-button py-4 px-10 rounded-xl text-lg">Contact Us</a>
+               </div>
+          </div>
+       </div>
+     </section>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- Testimonials Carousel Logic ---
+        const testimonials = [
+            { quote: "One of the best cycle stores in Secunderabad. They are very friendly and have a good collection of cycles. They did a patient check-up of my bicycle.", author: "Ravi Varma", role: "Customer" },
+            { quote: "Very Good services. And they have very good skilled technicians who are very good at their work.", author: "Sandeep Putta", role: "Customer" },
+            { quote: "Best service and best price. The owner of the shop is very good in nature.", author: "Shaik Amer", role: "Customer" },
+            { quote: "Excellent work done. A very nice person who listens to your problem patiently and resolves it.", author: "Prasad P", role: "Customer" },
+            { quote: "The best cycle service I have ever seen they treat the cycles like their own cycle... Super Anna!", author: "ROHITH VLOGS", role: "Customer" },
+            { quote: "Best cycle store in the entire Trimulgherry, Bolarum area. They provide excellent service and genuine parts.", author: "Suraj Singh", role: "Customer" },
+            { quote: "Good place for cycle service. The staff is knowledgeable and the prices are very reasonable. Highly recommend.", author: "Abhishek Toppo", role: "Customer" },
+            { quote: "Very good service... They offer home delivery and pickup which is very convenient for everyone.", author: "Venkat Reddy", role: "Customer" },
+            { quote: "Very good service and perfect work. My cycle feels brand new after their service. Keep it up!", author: "Mohammed Moinuddin", role: "Customer" },
+            { quote: "Good receiving and good service for my kid's cycle. They are very patient and friendly with children.", author: "Chaitanya Chaitu", role: "Parent" },
+            { quote: "Bahut accha service hai, aur cycles ke variety bhi bahut hai. Staff is very helpful and suggests the best options.", author: "Karthik Goud", role: "Customer" },
+            { quote: "Good service and responsible pricing. They are very transparent with the costs and there are no hidden charges.", author: "Sridhar Rao", role: "Customer" },
+            { quote: "Best cycle mart in Bolarum. A one-stop shop for sales, service, and accessories. Excellent customer support.", author: "Vamsi Krishna", role: "Customer" },
+            { quote: "Reasonable price and good service. I am very satisfied with their work and professionalism.", author: "Sheik Nadeem", role: "Customer" },
+            { quote: "Super excellent work! My cycle was repaired quickly and is now in perfect condition. Great job!", author: "Syed Ghouse", role: "Customer" }
+        ];
+
+        let currentTestimonial = 0;
+        const carouselContainer = document.getElementById('testimonial-carousel-container');
+        const authorsContainer = document.getElementById('testimonial-authors-container');
+        const nextBtn = document.getElementById('next-testimonial');
+        const prevBtn = document.getElementById('prev-testimonial');
+
+        const getRandomAvatar = (authorName) => {
+            const seed = authorName.replace(/\s/g, ''); // Use name as seed
+            return `https://i.pravatar.cc/64?u=${seed}`;
+        };
+
+        function renderCarousel() {
+            if (!carouselContainer || !authorsContainer) return;
+
+            carouselContainer.innerHTML = ''; // Clear previous slides
+
+            testimonials.forEach((t, index) => {
+                const slide = document.createElement('div');
+                slide.className = 'testimonial-slide';
+                
+                let offset = index - currentTestimonial;
+                if (offset < -Math.floor(testimonials.length / 2)) offset += testimonials.length;
+                if (offset > Math.floor(testimonials.length / 2)) offset -= testimonials.length;
+
+                let transform, opacity, zIndex;
+                
+                if (offset === 0) {
+                    transform = 'translateX(0) scale(1)';
+                    opacity = 'opacity-100';
+                    zIndex = 'z-20';
+                    slide.classList.add('active');
+                } else if (offset === -1) {
+                    transform = 'translateX(-80%) scale(0.8)';
+                    opacity = 'opacity-50';
+                    zIndex = 'z-10';
+                } else if (offset === 1) {
+                    transform = 'translateX(80%) scale(0.8)';
+                    opacity = 'opacity-50';
+                    zIndex = 'z-10';
+                } else {
+                    transform = `translateX(${offset * 100}%) scale(0.6)`;
+                    opacity = 'opacity-0';
+                    zIndex = 'z-0';
+                }
+
+                slide.style.transform = transform;
+                slide.style.zIndex = zIndex.replace('z-', '');
+                slide.classList.add(opacity);
+                slide.innerHTML = `<div class="testimonial-bubble"><p>"${t.quote}"</p></div>`;
+                carouselContainer.appendChild(slide);
+            });
+            
+            // Render Authors
+            authorsContainer.innerHTML = '';
+            const prevIndex = (currentTestimonial - 1 + testimonials.length) % testimonials.length;
+            const nextIndex = (currentTestimonial + 1) % testimonials.length;
+            
+            const authorsToShow = [
+                testimonials[prevIndex],
+                testimonials[currentTestimonial],
+                testimonials[nextIndex]
+            ];
+            
+            authorsToShow.forEach((t, displayIndex) => {
+                  const isActive = displayIndex === 1;
+                  
+                  const authorDiv = document.createElement('div');
+                  authorDiv.className = `testimonial-author ${isActive ? 'active' : ''}`;
+                  authorDiv.innerHTML = `
+                       <img src="${getRandomAvatar(t.author)}" alt="${t.author}" class="testimonial-avatar">
+                       <p class="font-bold text-deep-blue mt-2">${t.author}</p>
+                       <p class="text-sm text-text-neutral-grey">${t.role}</p>
+                  `;
+                  authorsContainer.appendChild(authorDiv);
+            });
+        }
+
+        function navigate(direction) {
+            currentTestimonial = (currentTestimonial + direction + testimonials.length) % testimonials.length;
+            renderCarousel();
+        }
+
+        if (nextBtn && prevBtn && carouselContainer && authorsContainer) {
+            renderCarousel();
+            nextBtn.addEventListener('click', () => navigate(1));
+            prevBtn.addEventListener('click', () => navigate(-1));
+            
+            let autoAdvance = setInterval(() => {
+                navigate(1);
+            }, 5000);
+
+            carouselContainer.addEventListener('mouseenter', () => clearInterval(autoAdvance));
+            carouselContainer.addEventListener('mouseleave', () => {
+                autoAdvance = setInterval(() => {
+                    navigate(1);
+                }, 5000);
+            });
+        }
+    });
+    </script>
+</body>
+</html>
+
+
+
+
+
